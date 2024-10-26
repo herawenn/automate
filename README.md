@@ -9,7 +9,6 @@ This project is a command-line chatbot application that integrates multiple AI m
 - **Multiple AI Models**: Integrates Google Gemini, Cohere, and Mistral AI models.
 - **Command-Line Interface**: Easy-to-use CLI for interacting with the chatbot.
 - **Customizable Settings**: Change the system prompt, temperature, and the model being used.
-- **Error Handling**: Robust error handling for API calls and user inputs.
 
 ## Requirements
 
@@ -20,8 +19,8 @@ This project is a command-line chatbot application that integrates multiple AI m
 
 1. **Clone the Repository**:
     ```sh
-    git clone https://github.com/yourusername/multi-model-chatbot.git
-    cd multi-model-chatbot
+    git clone https://github.com/herawenn/terminalai.git
+    cd terminalai
     ```
 
 2. **Install Dependencies**:
@@ -42,7 +41,7 @@ This project is a command-line chatbot application that integrates multiple AI m
 
 1. **Run the Script**:
     ```sh
-    python chatbot.py
+    python terminal.py
     ```
 
 2. **Commands**:
@@ -57,7 +56,7 @@ This project is a command-line chatbot application that integrates multiple AI m
 ## Example
 
 ```sh
-\$ python chatbot.py
+\$ python terminal.py
 
  Type '/help' for commands, or '/exit' to quit
 
