@@ -1,5 +1,7 @@
 # Multi-Model Chatbot
 
+![Chatbot Banner](https://i.imgur.com/mSrWMAX.png)
+
 This project is a command-line chatbot application that integrates multiple AI models from different providers (Google Gemini, Cohere, and Mistral). It allows users to interact with these models through a command-line interface, with options to change the system prompt, temperature, and the model being used.
 
 ## Features
