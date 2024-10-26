@@ -1,4 +1,4 @@
-# Multi-Model Chatbot
+# TerminalAI
 
 ![Chatbot Banner](https://i.imgur.com/mSrWMAX.png)
 
