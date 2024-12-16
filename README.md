@@ -1,6 +1,5 @@
 # TerminalAI
-
-![Commands](https://i.imgur.com/a/7rWtDhB.png)
+![Imgur](https://i.imgur.com/qEm4JKo.png)
 
 ![Chatbot Banner](https://i.imgur.com/mSrWMAX.png)
 
