@@ -1,0 +1,5 @@
+google-generativeai
+cohere
+mistralai
+tqdm
+mimetypes
