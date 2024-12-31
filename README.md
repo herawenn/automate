@@ -47,7 +47,7 @@ This update introduces the `/discuss` command, enabling users to provide a file 
 
 2. **Install Dependencies**:
    ```bash
-   pip install google-generativeai cohere mistralai
+   pip install -r requirements.txt
    ```
 
 3. **Set API Keys (Securely!)**:  **Do not hardcode API keys directly into the script.** Use environment variables for security:
@@ -58,7 +58,6 @@ This update introduces the `/discuss` command, enabling users to provide a file 
    export MISTRAL_API_KEY="your_mistral_api_key"
    ```
    Then, access them in your Python script using `os.environ.get("GEMINI_API_KEY")`.
-
 
 ## Usage
 
@@ -87,7 +86,6 @@ This update introduces the `/discuss` command, enabling users to provide a file 
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
-
 
 ## License
 
