@@ -86,10 +86,3 @@ This update introduces the `/discuss` command, enabling users to provide a file 
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-[Specify License, e.g., MIT License]
-```
-
-Remember to replace `<insert_screenshot_here.png>` with the actual path to your screenshot and fill in the bracketed information.  This improved README provides clearer instructions and addresses potential security concerns.
