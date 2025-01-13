@@ -4,7 +4,7 @@
 
 This is a command-line chatbot application that integrates multiple AI models from different providers (Google Gemini, Cohere, and Mistral). It allows users to interact with these models through a command-line interface, with options to change the system prompt, temperature, and the model being used.
 
-![Image](https://i.imgur.com/cpN5Tm4.png)
+![Image](https://i.imgur.com/J5DXVum.png)
 
 ## Features
 
@@ -17,7 +17,7 @@ This is a command-line chatbot application that integrates multiple AI models fr
 * **Memory Management:** Allows you to store and manage persistent memories for context and state.
 * **Customizable User Experience:**  Allows users to configure their username, agent name, window title, opacity, and more.
 
-![Image](https://i.imgur.com/J5DXVum.png)
+![Image](https://i.imgur.com/cpN5Tm4.png)
 
 ## Commands
 
