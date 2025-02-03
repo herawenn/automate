@@ -1,6 +1,6 @@
 # CoPilot by PortLords
 
-![Image](https://i.imgur.com/w40TMmN.png)
+![Image](https://i.imgur.com/oIKeBpn.png)
 
 CoPilot is an AI-powered code assistant designed to streamline your coding workflow. It leverages large language models (LLMs) to provide code analysis, improvements, and conversational assistance directly within your development environment. The tool is built using Python and interacts with multiple LLMs.
 
