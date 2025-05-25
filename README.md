@@ -1,8 +1,8 @@
-# CoPilot by PortLords
+# Automate by PortLords
 
 ![Image](https://i.imgur.com/oIKeBpn.png)
 
-CoPilot is an AI-powered code assistant designed to streamline your coding workflow. It leverages large language models (LLMs) to provide code analysis, improvements, and conversational assistance directly within your development environment. The tool is built using Python and interacts with multiple LLMs.
+Automate is an AI-powered code assistant designed to streamline your coding workflow. It leverages large language models (LLMs) to provide code analysis, improvements, and conversational assistance directly within your development environment. The tool is built using Python and interacts with multiple LLMs.
 
 ## Features
 
@@ -34,7 +34,7 @@ CoPilot is an AI-powered code assistant designed to streamline your coding workf
     {
     "db_path": "files/db.db",
     "project_directory": "<desired_project_directory>",
-    "window_title": "CoPilot by PortLords",
+    "window_title": "Automate by PortLords",
     "model": "gemini",
     "tone": "professional",
     "output_length": "low",
@@ -63,7 +63,7 @@ CoPilot is an AI-powered code assistant designed to streamline your coding workf
 
 ## Commands
 
-The CoPilot tool responds to commands prefixed with a forward slash (`/`).  Here are the available commands:
+The Automate tool responds to commands prefixed with a forward slash (`/`).  Here are the available commands:
 
 
 ### General Commands
@@ -110,7 +110,7 @@ The CoPilot tool responds to commands prefixed with a forward slash (`/`).  Here
 ## Project Structure
 
 ```md
-copilot/
+Automate/
 ├── main.py               # Main application script
 ├── helper.py             # Helper functions for code manipulation and AI interaction
 ├── database.py           # Database interactions (SQLite)
