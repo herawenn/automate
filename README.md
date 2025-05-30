@@ -1,4 +1,4 @@
-# Automate by PortLords
+# Automate
 
 ![Image](https://i.imgur.com/ft6az2A.png)
 
