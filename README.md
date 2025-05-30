@@ -1,6 +1,6 @@
 # Automate
 
-![Image](https://i.imgur.com/FntqXDc.png)
+ ![Image](https://i.imgur.com/FntqXDc.png)
 
 This is a Python application designed to streamline your development workflow. It features a robust command-line interface for interacting with the AI, managing project context, and applying code changes. It also supports multimodal input via screen capture and offers voice command capabilities for a more flexible user experience.
 
