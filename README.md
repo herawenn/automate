@@ -7,33 +7,43 @@ This is a Python application designed to streamline your development workflow. I
 ## Features
 
 * **AI Model Integration:** Supports multiple AI models including Google's Gemini, Mistral, and Codestral.
+
 * **Project Indexing:** Scans and indexes your project directory to provide relevant context to the AI.
+
 * **Context Management:**
     * Pin specific files or entire directories to the AI's immediate context.
     * Drop files or clear the context as needed.
     * List currently pinned files.
+
 * **Code Interaction:**
     * Propose code changes (new files or modifications to existing ones).
     * Review diffs of proposed changes.
     * Apply or discard AI suggestions.
     * Automatic execution of modified/created Python scripts (if Admin Mode is enabled).
+
 * **Multimodal Input:**
     * `/capture_context`: Captures a screenshot and sends it with a prompt to the AI for analysis (useful for UI elements, error messages, or visual context).
+
 * **Voice Commands:**
     * Activate voice input (default: `Ctrl+Shift+V`) to speak your prompts or commands.
+
 * **Settings Management:**
     * Configure AI model, temperature, and other operational settings.
     * Toggle Admin Mode for enabling/disabling filesystem operations and script execution.
+
 * **Utility Commands:**
     * `/find`: Search for files within the indexed project.
     * `/runtest`: Execute a pre-configured test command for your project.
     * `/reindex`: Manually refresh the project's file index.
     * `/codefolder`: Display the configured project root path.
+
 * **User-Friendly Interface:** Color-coded terminal output for better readability.
+
 * **Persistent Settings:** Saves configuration to a local SQLite database.
+
 * **Logging:** Detailed logging for debugging and tracing operations.
 
-## Core Components
+## Components
 
 * **`agent.py`**: Manages the main chatbot logic, command parsing, user interaction, and orchestrates calls to other modules.
 * **`indexer.py`**: Handles scanning, indexing, and providing access to files within the specified project code folder.
@@ -54,8 +64,6 @@ Run the main application script:
 ```python
 python automate/main.py
 ```
-
-Once started, you'll be greeted with a prompt. Type /help to see the list of available commands.
 
 ### Basic Commands
 ```md
