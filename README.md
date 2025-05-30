@@ -2,7 +2,7 @@
 
 ![Image](https://i.imgur.com/ft6az2A.png)
 
-This is a Python application designed to streamline your development workflow. It features a robust command-line interface for interacting with the AI, managing project context, and applying code changes. Additionally, it supports multimodal input via screen capture and offers voice command capabilities for a more flexible user experience.
+This is a Python application designed to streamline your development workflow. It features a robust command-line interface for interacting with the AI, managing project context, and applying code changes. It also supports multimodal input via screen capture and offers voice command capabilities for a more flexible user experience.
 
 ## Features
 
