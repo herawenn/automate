@@ -67,11 +67,11 @@ python automate/main.py
 
 ### Basic Commands
 `/help: Show available commands.`
-`/list: List currently pinned files and project index summary.`
-`/add <path_in_project>: Pin a file or all files in a directory to the AI's context.`
-`Example: /add main.py or /add src/utils`
-`/drop <filename_or_path_or_all>: Unpin files from the context.`
-`/find <substring>: Search for files in your project by name.`
+\n`/list: List currently pinned files and project index summary.`
+\n`/add <path_in_project>: Pin a file or all files in a directory to the AI's context.`
+\n`Example: /add main.py or /add src/utils`
+\n`/drop <filename_or_path_or_all>: Unpin files from the context.`
+\n`/find <substring>: Search for files in your project by name.`
 `/model [client_name]: View or change the active AI model (e.g., gemini, mistral, codestral).`
 `/settings [key value]: View or modify application settings (e.g., /settings temperature 0.5).`
 `/sudo [on|off]: Toggle Admin Mode (allows file creation/execution by the AI).`
