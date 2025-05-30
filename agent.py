@@ -52,7 +52,7 @@ class ChatBot:
             "/add": "Pin file(s) to context.",
             "/drop": "Unpin file(s) or 'all' from context.",
             "/list": "List pinned files & project index summary.",
-            "/apply": "Review & apply AI code changes (auto-runs .py if Admin ON).",
+            "/apply": "Review & apply AI code changes.",
             "/discard": "Discard AI proposed changes.",
             "/model": "View/set AI model client.",
             "/settings": "View/set app settings.",
@@ -1451,7 +1451,6 @@ class ChatBot:
 
     def _handle_help_command(self, args: List[str]) -> None:
         if not self.command_list:
-            self._display_system_message("Available commands:")
             print(f"  {Style.DIM}No commands available.{Style.RESET_ALL}")
             return
 
@@ -1475,7 +1474,7 @@ class ChatBot:
         while True:
             os.system('cls' if os.name == 'nt' else 'clear') 
             
-            self._display_system_message(f"Available commands (Page {current_page} of {num_pages}):")
+            self._display_system_message(f"\n {Fore.RESET}Commands Page [{Fore.GREEN}{current_page}{Fore.RESET} / {Fore.GREEN}{num_pages}{Fore.RESET}]:\n")
 
             start_index = (current_page - 1) * items_per_page
             end_index = start_index + items_per_page
@@ -1505,31 +1504,26 @@ class ChatBot:
                 if usage_part:
                     usage_indent_spaces = " " * (2 + command_col_width + 3)
                     print(f"{usage_indent_spaces}{Style.DIM}{usage_part}{Style.RESET_ALL}")
-            
-            print("-" * 20)
 
             nav_options = []
             if current_page > 1:
-                nav_options.append(f"[{Fore.YELLOW}P{Style.RESET_ALL}]revious")
+                nav_options.append(f"[{Fore.GREEN}P{Style.RESET_ALL}] Previous")
             if current_page < num_pages:
-                nav_options.append(f"[{Fore.YELLOW}N{Style.RESET_ALL}]ext")
-            nav_options.append(f"[{Fore.YELLOW}Q{Style.RESET_ALL}]uit Help")
+                nav_options.append(f"[{Fore.GREEN}N{Style.RESET_ALL}] Next")
+            nav_options.append(f"[{Fore.GREEN}B{Style.RESET_ALL}] Back")
             
             if not nav_options:
-                 nav_options.append(f"[{Fore.YELLOW}Q{Style.RESET_ALL}]uit Help")
+                 nav_options.append(f"[{Fore.GREEN}Q{Style.RESET_ALL}] Quit")
 
 
-            print("Options: " + " | ".join(nav_options))
+            print("\n" + "\n".join(nav_options))
             
             try:
-                choice = input("Help Menu > ").lower().strip()
+                choice = input("\n//: ").lower().strip()
             except EOFError:
-                choice = 'q'
-                print("q")
+                choice = 'b'
             except KeyboardInterrupt:
                 choice = 'q'
-                print("\nExiting help menu...")
-
 
             if choice == 'n':
                 if current_page < num_pages:
