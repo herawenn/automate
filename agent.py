@@ -1,4 +1,4 @@
-import os, re, sys, stream, helper, database, keyboard
+import os, re, sys, stream, helper, database, keyboard, time
 import asyncio, textwrap, threading, subprocess, logging, difflib
 from os.path import (abspath, basename, dirname, exists, getsize, isfile, join, relpath, isdir)
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -48,22 +48,22 @@ class ChatBot:
             "/help": "Show this help message.",
             "/quit": "Exit the application.",
             "/exit": "Exit the application.",
-            "/clear": "Clear the terminal screen.",
-            "/add": "Pin file(s) or all files in a directory to the immediate context. Usage: /add <path_in_project>...",
-            "/drop": "Unpin file(s) or 'all' from the immediate context. Usage: /drop <filename_or_path_or_all>...",
-            "/list": "List pinned files and show project index summary.",
-            "/apply": "Review & apply proposed code changes (auto-executes Python files if Admin ON).",
-            "/discard": "Discard proposed code changes.",
-            "/model": "View/change AI model client. Usage: /model [client_name]",
-            "/settings": "Display or modify application settings. Usage: /settings [key value]",
-            "/codefolder": "Show the configured Code Folder path.",
-            "/sudo": "Toggle Admin Mode (allows file creation/execution). Usage: /sudo [on|off]",
-            "/runtest": "Run the configured test command. Usage: /runtest [optional_args]",
-            "/reindex": "Manually rescan the Code Folder and refresh the project index.",
-            "/find": "Search for files in the project index by name. Usage: /find <substring>"
+            "/clear": "Clear terminal screen.",
+            "/add": "Pin file(s) to context.",
+            "/drop": "Unpin file(s) or 'all' from context.",
+            "/list": "List pinned files & project index summary.",
+            "/apply": "Review & apply AI code changes (auto-runs .py if Admin ON).",
+            "/discard": "Discard AI proposed changes.",
+            "/model": "View/set AI model client.",
+            "/settings": "View/set app settings.",
+            "/codefolder": "Show configured Code Folder path.",
+            "/sudo": "Toggle Admin Mode (file ops/exec).",
+            "/runtest": "Run configured test command.",
+            "/reindex": "Rescan Code Folder & refresh index.",
+            "/find": "Find files by name in project."
         }
         if stream:
-            self.command_list["/capture_context"] = "Capture screen & send with prompt to AI. Usage: /capture_context [prompt]"
+            self.command_list["/capture_context"] = "Capture screen for AI."
 
         if keyboard:
             self._setup_voice_input()
