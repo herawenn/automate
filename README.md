@@ -2,7 +2,7 @@
 
 ![Image](https://i.imgur.com/ft6az2A.png)
 
-This is a Python application designed to streamline your development workflow. It integrates powerful generative AI models (Gemini, Mistral, and Codestral) to provide intelligent assistance for coding tasks. The assistant can understand the context of your project by indexing its files, allowing for more relevant and accurate code generation, analysis, and modification suggestions. It features a robust command-line interface for interacting with the AI, managing project context, and applying code changes. Additionally, it supports multimodal input via screen capture and offers voice command capabilities for a more flexible user experience.
+This is a Python application designed to streamline your development workflow. It features a robust command-line interface for interacting with the AI, managing project context, and applying code changes. Additionally, it supports multimodal input via screen capture and offers voice command capabilities for a more flexible user experience.
 
 ## Features
 
@@ -66,27 +66,24 @@ python automate/main.py
 ```
 
 ### Basic Commands
-```md
-/help: Show available commands.
-/list: List currently pinned files and project index summary.
-/add <path_in_project>: Pin a file or all files in a directory to the AI's context.
-Example: /add main.py or /add src/utils
-/drop <filename_or_path_or_all>: Unpin files from the context.
-/find <substring>: Search for files in your project by name.
-/model [client_name]: View or change the active AI model (e.g., gemini, mistral, codestral).
-/settings [key value]: View or modify application settings (e.g., /settings temperature 0.5).
-/sudo [on|off]: Toggle Admin Mode (allows file creation/execution by the AI).
-/apply: Review and apply AI-proposed code changes.
-/discard: Discard the last set of proposed changes.
-/capture_context [optional_prompt]: Capture the screen and send it with an optional prompt to the AI.
-/runtest [optional_args]: Run the configured test command.
-/reindex: Manually rescan the Code Folder.
-/clear: Clear the terminal screen.
-/quit or /exit: Exit the application.
 
-Voice Input
-Press Ctrl+Shift+V (default) to activate voice input. Speak your command or prompt.
-```
+`/help`: `Show available commands.`
+`/list`: `List currently pinned files and project index summary.`
+`/add <path_in_project>`: `Pin a file or all files in a directory to the AI's context.`
+`Example: /add main.py or /add src/utils`
+`/drop <filename_or_path_or_all>`: `Unpin files from the context.`
+`/find <substring>`: `Search for files in your project by name.`
+`/model [client_name]`: `View or change the active AI model (e.g., gemini, mistral, codestral).`
+`/settings [key value]`: `View or modify application settings (e.g., /settings temperature 0.5).`
+`/sudo [on|off]`: `Toggle Admin Mode (allows file creation/execution by the AI).`
+`/apply`: `Review and apply AI-proposed code changes.`
+`/discard`: `Discard the last set of proposed changes.`
+`/capture_context [optional_prompt]`: `Capture the screen and send it with an optional prompt to the AI.`
+`/runtest [optional_args]`: `Run the configured test command.`
+`/reindex`: `Manually rescan the Code Folder.`
+`/clear`: `Clear the terminal screen.`
+`/quit` or `/exit`: `Exit the application.`
+`Ctrl+Shift+V (default)`: `Activate voice input. Speak your command or prompt.`
 
 ## Project Structure
 ```md
