@@ -1411,13 +1411,18 @@ class ChatBot:
     def _print_startup_info(self, show_full_logo: bool = True):
         try:
             os.system('cls' if os.name == 'nt' else 'clear')
-            if show_full_logo:
-                print(f"\n\n\t\t\t\t\t\t\t\t      {Fore.YELLOW}~{Style.RESET_ALL} Indexed")
 
-            print(f"\n\t\t\t\t     Type '{Fore.YELLOW}/help{Style.RESET_ALL}' for commands, '{Fore.YELLOW}/exit{Style.RESET_ALL}' to quit")
+            num_indexed_files_str = "N/A"
+            if hasattr(self, 'project_indexer') and self.project_indexer and self.project_indexer.file_index is not None:
+                num_indexed_files_str = str(len(self.project_indexer.file_index))
+
+            if show_full_logo:
+                print(f"\n\n\t\t\t\t\t\t\t      [{Fore.YELLOW}{num_indexed_files_str}{Style.RESET_ALL}] Files Indexed\n ")
+
+            print(f"\n\t\t\t\t     Type '{Fore.YELLOW}/help{Style.RESET_ALL}' for commands, '{Fore.YELLOW}/exit{Style.RESET_ALL}' to quit\n")
 
             if not self.settings:
-                print(f"{Fore.RED}{Style.BRIGHT}Error: Settings not loaded. Startup information may be incomplete.{Style.RESET_ALL}")
+                print(f"{Fore.RED}{Style.BRIGHT}Error: Settings not loaded. Startup information may be incomplete.{Style.RESET_ALL}\n")
                 return
 
             current_model_client: str = self.settings.get('model_name', 'N/A')
@@ -1426,24 +1431,20 @@ class ChatBot:
             except ValueError:
                 relative_code_folder = self.code_folder_path
 
-            num_indexed_files_str = "N/A"
-            if self.project_indexer and self.project_indexer.file_index is not None:
-                num_indexed_files_str = str(len(self.project_indexer.file_index))
+            print(f"\n\t\t\t\t\t\t\t       AI Model: {Fore.YELLOW}{current_model_client}{Style.RESET_ALL}\n"
+                  f"\n\n\t\t\t\t\t\t\t   Enviorment: {Fore.YELLOW}{relative_code_folder}{Style.RESET_ALL} [{Fore.YELLOW}{num_indexed_files_str}{Style.RESET_ALL}]\n")
 
-            print(f"\n\t\t\t\t\t\t\t       AI Model: {Fore.YELLOW}{current_model_client}{Style.RESET_ALL}"
-                  f"\n\n\t\t\t\t\t\t\t   Enviorment: {Fore.YELLOW}{relative_code_folder}{Style.RESET_ALL} [{Fore.YELLOW}{num_indexed_files_str}{Style.RESET_ALL}]")
-
-            if keyboard:
+            if 'keyboard' in sys.modules or keyboard:
                 if self.voice_handler and self.hotkeys_active:
-                    self._display_system_message(f"\n\t\t\t\t\t\t\t   {Style.RESET_ALL}Listen: {Fore.YELLOW}Ctrl+Shift+V{Style.RESET_ALL}")
+                    self._display_system_message(f"\n\t\t\t\t\t\t\t   {Style.RESET_ALL}Listen: {Fore.YELLOW}Ctrl+Shift+V{Style.RESET_ALL}\n\n")
                 elif self.voice_handler and not self.hotkeys_active:
-                    self._display_error(f"Voice input hotkey {Fore.CYAN}Ctrl+Shift+V{Style.RESET_ALL} FAILED to activate (check logs/permissions). Voice input via hotkey is disabled.")
+                    self._display_error(f"Voice input hotkey {Fore.CYAN}Ctrl+Shift+V{Style.RESET_ALL} FAILED to activate (check logs/permissions). Voice input via hotkey is disabled.\n\n")
                 elif not self.voice_handler:
-                    self._display_system_message(f"Voice input system could not be initialized (e.g., missing SpeechRecognition). Hotkey {Fore.CYAN}Ctrl+Shift+V{Style.RESET_ALL} is disabled.")
+                    self._display_system_message(f"Voice input system could not be initialized (e.g., missing SpeechRecognition). Hotkey {Fore.CYAN}Ctrl+Shift+V{Style.RESET_ALL} is disabled.\n\n")
             else:
-                self._display_system_message(f"Keyboard module not available. Hotkeys (including for voice input) are disabled.")
+                self._display_system_message(f"Keyboard module not available or failed to import. Hotkeys (including for voice input) are disabled.\n\n")
 
-            print("")
+            print("") # Final empty line for spacing
 
         except Exception as e:
             logger.error(f"Error printing startup info: {e}", exc_info=True)
