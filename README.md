@@ -1,6 +1,6 @@
 # Automate by PortLords
 
-![Image](https://imgur.com/a/ogtILIe)
+![Image](https://i.imgur.com/ft6az2A.png)
 
 ## Features
 
