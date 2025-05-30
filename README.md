@@ -58,6 +58,7 @@ python automate/main.py
 Once started, you'll be greeted with a prompt. Type /help to see the list of available commands.
 
 ### Basic Commands
+```md
 /help: Show available commands.
 /list: List currently pinned files and project index summary.
 /add <path_in_project>: Pin a file or all files in a directory to the AI's context.
@@ -74,8 +75,10 @@ Example: /add main.py or /add src/utils
 /reindex: Manually rescan the Code Folder.
 /clear: Clear the terminal screen.
 /quit or /exit: Exit the application.
+
 Voice Input
 Press Ctrl+Shift+V (default) to activate voice input. Speak your command or prompt.
+```
 
 ## Project Structure
 ```md
