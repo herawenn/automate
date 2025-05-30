@@ -66,7 +66,7 @@ python automate/main.py
 ```
 
 ### Basic Commands
-```python
+```md
 /help: Show available commands.
 /list: List currently pinned files and project index summary.
 /add <path_in_project>: Pin a file or all files in a directory to the AI's context.
