@@ -78,6 +78,7 @@ Voice Input
 Press Ctrl+Shift+V (default) to activate voice input. Speak your command or prompt.
 
 ## Project Structure
+```md
 automate/
 │
 ├── main.py                 # Main application entry point, setup, and orchestration
@@ -96,7 +97,7 @@ automate/
 │
 └── Code/                   # Default project folder to be indexed by the assistant (user-created or specified)
     └── ... (your project files and folders to be worked on)
-
+```
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
 
