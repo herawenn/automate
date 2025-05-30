@@ -97,13 +97,20 @@ class ChatBot:
             if not self.settings:
                 self._display_error("Settings not loaded. Prompt cannot be displayed.")
                 return
+            
             is_admin: bool = bool(self.settings.get('admin_mode_enabled', False))
-            admin_symbol: str = f"{Fore.GREEN}{Style.BRIGHT}ADMIN{Style.RESET_ALL}" if is_admin else f"{Fore.RED}USER{Style.RESET_ALL}"
-            prompt_string: str = f"\n({admin_symbol}) {Fore.YELLOW}{self.USERNAME}{Style.RESET_ALL}: "
+            
+            if is_admin:
+                admin_indicator = f"{Fore.GREEN}{Style.BRIGHT}{CHECKMARK}{Style.RESET_ALL}"
+            else:
+                admin_indicator = f"{Fore.RED}{X_MARK}{Style.RESET_ALL}"
+                
+            prompt_string: str = f"\n({admin_indicator}) {Fore.YELLOW}{self.USERNAME}{Style.RESET_ALL}: "
             print(prompt_string, end="")
+            
         except Exception as e:
             logger.error(f"Error displaying prompt: {e}", exc_info=True)
-            self._display_error("Error displaying prompt. Check logs.")
+            print(f"\nError displaying prompt. Check logs. {self.USERNAME}: ", end="")
 
     def _summarize_content_if_needed(self, file_rel_path: str, full_content: str) -> Tuple[str, bool]:
         if len(full_content) > MIN_CHARS_TO_TRIGGER_SUMMARIZATION and self.settings:
@@ -113,7 +120,7 @@ class ChatBot:
                 f"Focus on the core logic, main functionalities, and purpose of the code or text. "
                 f"The summary should be concise and capture the essence of the file for an AI assistant to understand its role in a larger project. "
                 f"Keep the summary under {MAX_INDEXED_FILE_CONTENT_CHARS_IN_PROMPT // 2} characters if possible.\n\n"
-                f"Full content of '{file_rel_path}':\n```\n{full_content[\:MAX_CHARS_FOR_SUMMARIZATION_INPUT]}\n```"
+                f"Full content of '{file_rel_path}':\n```\n{full_content[MAX_CHARS_FOR_SUMMARIZATION_INPUT]}\n```"
             )
             if len(full_content) > MAX_CHARS_FOR_SUMMARIZATION_INPUT:
                 summarization_prompt += "\n(Note: Original content was truncated for this summarization prompt)"
@@ -1443,11 +1450,107 @@ class ChatBot:
             print(f"{Fore.RED}{Style.BRIGHT}Error displaying critical startup information.{Style.RESET_ALL}")
 
     def _handle_help_command(self, args: List[str]) -> None:
-        self._display_system_message("Available commands:")
+        if not self.command_list:
+            self._display_system_message("Available commands:")
+            print(f"  {Style.DIM}No commands available.{Style.RESET_ALL}")
+            return
+
         sorted_commands = sorted(self.command_list.items())
-        for command, description in sorted_commands:
-            print(f"  {Fore.GREEN}{command}{Style.RESET_ALL} : {description}")
-        print("\nTip: Paths for /add can often be just the filename if it's unique, or a partial path.")
+        num_commands = len(sorted_commands)
+        items_per_page = 5
+        num_pages = (num_commands + items_per_page - 1) // items_per_page
+        
+        if num_pages == 0:
+            num_pages = 1
+
+        current_page = 1
+
+        max_cmd_len = 0
+        if sorted_commands:
+            for cmd, _ in sorted_commands:
+                if len(cmd) > max_cmd_len:
+                    max_cmd_len = len(cmd)
+        command_col_width = max_cmd_len
+
+        while True:
+            os.system('cls' if os.name == 'nt' else 'clear') 
+            
+            self._display_system_message(f"Available commands (Page {current_page} of {num_pages}):")
+
+            start_index = (current_page - 1) * items_per_page
+            end_index = start_index + items_per_page
+            current_page_commands = sorted_commands[start_index:end_index]
+
+            for command, full_description in current_page_commands:
+                usage_part = ""
+                description_part = full_description
+                
+                usage_marker = "Usage: "
+                usage_idx = full_description.find(usage_marker)
+
+                if usage_idx > 0:
+                    description_part = full_description[:usage_idx].strip()
+                    usage_part = full_description[usage_idx:].strip()
+                elif full_description.startswith(usage_marker): 
+                    description_part = ""
+                    usage_part = full_description.strip()
+
+                cmd_formatted = f"{Fore.GREEN}{command:<{command_col_width}}{Style.RESET_ALL}"
+                
+                if description_part:
+                    print(f"  {cmd_formatted} : {description_part}")
+                else:
+                    print(f"  {cmd_formatted} :")
+
+                if usage_part:
+                    usage_indent_spaces = " " * (2 + command_col_width + 3)
+                    print(f"{usage_indent_spaces}{Style.DIM}{usage_part}{Style.RESET_ALL}")
+            
+            print("-" * 20)
+
+            nav_options = []
+            if current_page > 1:
+                nav_options.append(f"[{Fore.YELLOW}P{Style.RESET_ALL}]revious")
+            if current_page < num_pages:
+                nav_options.append(f"[{Fore.YELLOW}N{Style.RESET_ALL}]ext")
+            nav_options.append(f"[{Fore.YELLOW}Q{Style.RESET_ALL}]uit Help")
+            
+            if not nav_options:
+                 nav_options.append(f"[{Fore.YELLOW}Q{Style.RESET_ALL}]uit Help")
+
+
+            print("Options: " + " | ".join(nav_options))
+            
+            try:
+                choice = input("Help Menu > ").lower().strip()
+            except EOFError:
+                choice = 'q'
+                print("q")
+            except KeyboardInterrupt:
+                choice = 'q'
+                print("\nExiting help menu...")
+
+
+            if choice == 'n':
+                if current_page < num_pages:
+                    current_page += 1
+                else:
+                    print(f"{Fore.RED}Already on the last page.{Style.RESET_ALL}")
+                    time.sleep(1)
+            elif choice == 'p':
+                if current_page > 1:
+                    current_page -= 1
+                else:
+                    print(f"{Fore.RED}Already on the first page.{Style.RESET_ALL}")
+                    time.sleep(1)
+            elif choice == 'q':
+                os.system('cls' if os.name == 'nt' else 'clear')
+                if hasattr(self, '_print_startup_info'):
+                    self._print_startup_info(show_full_logo=False)
+                break
+            else:
+                print(f"{Fore.RED}Invalid option. Please choose from the available letters.{Style.RESET_ALL}")
+                time.sleep(1.5)
 
     def _handle_clear_command(self, args: List[str]) -> None:
         os.system('cls' if os.name == 'nt' else 'clear')
